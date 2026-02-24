@@ -37,6 +37,5 @@ next-env.d.ts
 
 # database
 /data/
-/drizzle/migrations/
 
 .claude
