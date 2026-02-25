@@ -28,9 +28,6 @@ RUN apk add --no-cache chromium nss freetype harfbuzz ca-certificates ttf-freefo
 # Tell puppeteer / generate-pdf to use the system Chromium
 ENV CHROME_PATH=/usr/bin/chromium-browser
 
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs
-
 # Copy build output and necessary files
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
@@ -40,10 +37,8 @@ COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/drizzle ./drizzle
 
 # Data directory for SQLite
-RUN mkdir -p /app/data && chown nextjs:nodejs /app/data
+RUN mkdir -p /app/data
 VOLUME /app/data
-
-USER nextjs
 
 EXPOSE 3000
 ENV PORT=3000
