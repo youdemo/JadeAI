@@ -547,8 +547,8 @@
         "description": "轻松拖拽调整模块顺序、自定义布局，按你的方式构建简历。"
       },
       "export": {
-        "title": "多格式导出",
-        "description": "支持导出为 PDF、Word、HTML、纯文本或 JSON，适配各类招聘平台需求。"
+        "title": "导入与导出",
+        "description": "支持导出为 PDF、智能一页 PDF、Word、HTML、TXT、JSON，还可导入 JSON 文件一键还原或创建简历。"
       },
       "sharing": {
         "title": "一键分享",

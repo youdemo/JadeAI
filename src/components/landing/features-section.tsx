@@ -6,12 +6,14 @@ import {
   Sparkles,
   Layout,
   GripVertical,
-  Download,
+  ArrowDownUp,
   Share2,
   FileSearch,
   Languages,
   FileText,
   SpellCheck,
+  Upload,
+  Download,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -19,7 +21,7 @@ const FEATURES = [
   { key: 'aiChat', icon: Sparkles },
   { key: 'templates', icon: Layout },
   { key: 'dragDrop', icon: GripVertical },
-  { key: 'export', icon: Download },
+  { key: 'export', icon: ArrowDownUp },
   { key: 'sharing', icon: Share2 },
   { key: 'jdMatch', icon: FileSearch },
   { key: 'translate', icon: Languages },
@@ -119,41 +121,59 @@ function DemoDragDrop() {
 }
 
 function DemoExport() {
-  const formats = [
+  const exportFormats = [
     { label: 'PDF', color: 'bg-red-100 text-red-600 dark:bg-red-950 dark:text-red-400' },
+    { label: '1-Page', color: 'bg-pink-100 text-pink-600 dark:bg-pink-950 dark:text-pink-400' },
     { label: 'DOCX', color: 'bg-blue-100 text-blue-600 dark:bg-blue-950 dark:text-blue-400' },
     { label: 'HTML', color: 'bg-orange-100 text-orange-600 dark:bg-orange-950 dark:text-orange-400' },
-    { label: 'TXT', color: 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400' },
     { label: 'JSON', color: 'bg-green-100 text-green-600 dark:bg-green-950 dark:text-green-400' },
   ];
   return (
-    <div className="flex h-full items-center justify-center gap-6 p-6">
-      {/* Document icon */}
+    <div className="flex h-full items-center justify-center gap-5 p-6">
+      {/* Export side */}
       <div className="flex flex-col items-center gap-2">
-        <div className="relative h-24 w-20 rounded-lg border-2 border-zinc-300 bg-white dark:border-zinc-600 dark:bg-zinc-800">
-          <div className="absolute right-0 top-0 h-4 w-4 border-b-2 border-l-2 border-zinc-300 bg-zinc-100 dark:border-zinc-600 dark:bg-zinc-700" />
-          <div className="mt-6 space-y-1 px-2">
+        <div className="relative h-20 w-16 rounded-lg border-2 border-zinc-300 bg-white dark:border-zinc-600 dark:bg-zinc-800">
+          <div className="absolute right-0 top-0 h-3 w-3 border-b-2 border-l-2 border-zinc-300 bg-zinc-100 dark:border-zinc-600 dark:bg-zinc-700" />
+          <div className="mt-5 space-y-1 px-1.5">
             <div className="h-1 w-full rounded-full bg-zinc-200 dark:bg-zinc-600" />
             <div className="h-1 w-3/4 rounded-full bg-zinc-200 dark:bg-zinc-600" />
             <div className="h-1 w-full rounded-full bg-zinc-200 dark:bg-zinc-600" />
           </div>
         </div>
         <Download
-          className="h-5 w-5 text-pink-500"
+          className="h-4 w-4 text-pink-500"
           style={{ animation: 'demo-download-arrow 2s ease-in-out infinite' }}
         />
       </div>
       {/* Format badges */}
-      <div className="flex flex-col gap-2">
-        {formats.map((f, i) => (
+      <div className="flex flex-col gap-1.5">
+        {exportFormats.map((f, i) => (
           <span
             key={f.label}
-            className={`rounded-md px-3 py-1 text-xs font-semibold ${f.color}`}
-            style={{ animation: `demo-slide-up 0.3s ease-out ${i * 0.12}s both` }}
+            className={`rounded-md px-2.5 py-0.5 text-[11px] font-semibold ${f.color}`}
+            style={{ animation: `demo-slide-up 0.3s ease-out ${i * 0.1}s both` }}
           >
-            .{f.label.toLowerCase()}
+            {f.label}
           </span>
         ))}
+      </div>
+      {/* Divider */}
+      <div className="h-20 w-px bg-zinc-200 dark:bg-zinc-700" />
+      {/* Import side */}
+      <div className="flex flex-col items-center gap-2">
+        <Upload
+          className="h-4 w-4 text-green-500"
+          style={{ animation: 'demo-download-arrow 2s ease-in-out infinite reverse' }}
+        />
+        <div
+          className="flex flex-col items-center gap-1.5 rounded-lg border-2 border-dashed border-green-300 bg-green-50/50 px-4 py-3 dark:border-green-700 dark:bg-green-950/20"
+          style={{ animation: 'demo-slide-up 0.4s ease-out 0.5s both' }}
+        >
+          <span className="rounded-md bg-green-100 px-2.5 py-0.5 text-[11px] font-semibold text-green-600 dark:bg-green-950 dark:text-green-400">
+            .json
+          </span>
+          <span className="text-[10px] text-zinc-400">Import</span>
+        </div>
       </div>
     </div>
   );

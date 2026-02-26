@@ -547,8 +547,8 @@
         "description": "Easily rearrange sections, customize layouts, and build your resume exactly the way you want."
       },
       "export": {
-        "title": "Multi-Format Export",
-        "description": "Export your resume as PDF, Word, HTML, plain text, or JSON — ready for any application platform."
+        "title": "Import & Export",
+        "description": "Export as PDF, Smart One-Page PDF, Word, HTML, TXT, or JSON. Import a previously exported JSON to instantly restore or create a resume."
       },
       "sharing": {
         "title": "One-Click Sharing",
