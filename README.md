@@ -364,9 +364,9 @@ Contributions are welcome! Here's how to get started:
 
 ## Community
 
-Join the WeChat group for discussion and support:
+Join the QQ group for discussion and support:
 
-<img src="images/chat-group.jpg" width="200" alt="WeChat Group QR Code" />
+<img src="images/chat-group.jpg" width="200" alt="QQ Group QR Code" />
 
 ## FAQ
 
