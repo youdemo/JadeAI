@@ -26,7 +26,7 @@ export function RetroTemplate({ resume }: { resume: Resume }) {
   const contacts = [pi.email, pi.phone, pi.location, pi.website, pi.linkedin, pi.github].filter(Boolean);
 
   return (
-    <div className="mx-auto max-w-[210mm] p-8 shadow-lg" style={{ fontFamily: 'Georgia, serif', backgroundColor: BG }}>
+    <div className="mx-auto max-w-[210mm] shadow-lg" style={{ fontFamily: 'Georgia, serif', backgroundColor: BG }}>
       {/* Header */}
       <div className="mb-6 pb-4 text-center" style={{ borderBottom: `3px double ${PRIMARY}` }}>
         {pi.avatar && (

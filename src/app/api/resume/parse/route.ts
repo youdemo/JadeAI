@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateText } from 'ai';
 import type { ModelMessage } from 'ai';
-import { getModel, extractAIConfig, AIConfigError } from '@/lib/ai/provider';
+import { getModel, extractAIConfig, getJsonProviderOptions, AIConfigError } from '@/lib/ai/provider';
 import { resolveUser, getUserIdFromRequest } from '@/lib/auth/helpers';
 import { resumeRepository } from '@/lib/db/repositories/resume.repository';
 import type { ParsedResume } from '@/lib/ai/parse-schema';
@@ -112,11 +112,7 @@ export async function POST(request: NextRequest) {
       maxOutputTokens: 16384,
       system: SYSTEM_PROMPT,
       messages,
-      providerOptions: {
-        openai: {
-          response_format: { type: 'json_object' },
-        },
-      },
+      providerOptions: getJsonProviderOptions(aiConfig),
     });
 
     console.log('[parse] finishReason=%s, length=%d', result.finishReason, result.text.length);

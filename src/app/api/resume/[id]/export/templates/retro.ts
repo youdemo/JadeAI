@@ -107,7 +107,7 @@ export function buildRetroHtml(resume: ResumeWithSections): string {
     </div>`;
   }).join('');
 
-  return `<div class="mx-auto max-w-[210mm] p-8 shadow-lg" style="font-family:Georgia,serif;background-color:${BG}">
+  return `<div class="mx-auto max-w-[210mm] shadow-lg" style="font-family:Georgia,serif;background-color:${BG}">
     <div class="mb-6 pb-4 text-center" style="border-bottom:3px double ${PRIMARY}">
       ${pi.avatar ? `<img src="${esc(pi.avatar)}" alt="" class="mx-auto mb-3 h-20 w-20 rounded-full object-cover" style="border:2px solid ${PRIMARY}"/>` : ''}
       <h1 class="text-3xl font-bold" style="color:${PRIMARY};font-family:'Courier New',monospace">${esc(pi.fullName || 'Your Name')}</h1>

@@ -97,7 +97,7 @@ export function buildRoseHtml(resume: ResumeWithSections): string {
   const sections = visibleSections(resume);
   const contacts = [pi.email, pi.phone, pi.location, pi.website].filter(Boolean);
 
-  return `<div class="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style="font-family:Inter,sans-serif">
+  return `<div class="mx-auto max-w-[210mm] bg-white shadow-lg" style="font-family:Inter,sans-serif">
     <div class="mb-8 rounded-2xl px-8 py-6 text-center" style="background-color:${ROSE_50}">
       ${pi.avatar ? `<img src="${esc(pi.avatar)}" alt="" class="mx-auto mb-3 h-20 w-20 rounded-full border-3 object-cover" style="border-color:${ACCENT}"/>` : ''}
       <h1 class="text-2xl font-semibold tracking-wide" style="color:${PRIMARY}">${esc(pi.fullName || 'Your Name')}</h1>

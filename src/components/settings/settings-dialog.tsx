@@ -36,7 +36,7 @@ import { cn } from '@/lib/utils';
 const AI_PROVIDERS: { value: AIProvider; label: string }[] = [
   { value: 'openai', label: 'OpenAI' },
   { value: 'anthropic', label: 'Anthropic' },
-  { value: 'custom', label: 'Custom' },
+  { value: 'gemini', label: 'Google Gemini' },
 ];
 
 export function SettingsDialog() {

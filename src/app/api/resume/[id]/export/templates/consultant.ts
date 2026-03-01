@@ -92,7 +92,7 @@ export function buildConsultantHtml(resume: ResumeWithSections): string {
   const sections = visibleSections(resume);
   const contacts = [pi.email, pi.phone, pi.location, pi.website].filter(Boolean);
 
-  return `<div class="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style="font-family:Inter,sans-serif">
+  return `<div class="mx-auto max-w-[210mm] bg-white shadow-lg" style="font-family:Inter,sans-serif">
     <div class="mb-6 h-1 w-full rounded" style="background-color:${BLUE_600}"></div>
     <div class="mb-6">
       <div class="flex items-center gap-4">

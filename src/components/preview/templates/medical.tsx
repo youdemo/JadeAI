@@ -12,7 +12,7 @@ export function MedicalTemplate({ resume }: { resume: Resume }) {
   const pi = (personalInfo?.content || {}) as PersonalInfoContent;
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
       {/* Header */}
       <div className="mb-6 border-b-2 pb-5" style={{ borderColor: TEAL_500 }}>
         <div className="flex items-center gap-5">

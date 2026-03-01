@@ -10,7 +10,7 @@ export function ElegantTemplate({ resume }: { resume: Resume }) {
   const pi = (personalInfo?.content || {}) as PersonalInfoContent;
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white p-10 shadow-lg" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
+    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
       {/* Header */}
       <div className="mb-8 text-center">
         {pi.avatar && (

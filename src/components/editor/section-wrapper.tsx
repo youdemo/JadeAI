@@ -66,7 +66,7 @@ export function SectionWrapper({ section, onUpdate, onRemove }: SectionWrapperPr
   };
 
   const SectionComponent = sectionComponents[section.type];
-  const isCustom = section.type === 'custom';
+  const isRenamable = section.type !== 'personal_info';
 
   return (
     <div
@@ -97,8 +97,8 @@ export function SectionWrapper({ section, onUpdate, onRemove }: SectionWrapperPr
             />
           ) : (
             <h3
-              className={`text-sm font-semibold text-zinc-700 dark:text-zinc-200 ${isCustom ? 'cursor-text rounded px-1 -mx-1 hover:bg-zinc-100 dark:hover:bg-zinc-700' : ''}`}
-              onDoubleClick={isCustom ? (e) => { e.stopPropagation(); setRenameValue(section.title); setIsRenaming(true); } : undefined}
+              className={`text-sm font-semibold text-zinc-700 dark:text-zinc-200 ${isRenamable ? 'cursor-text rounded px-1 -mx-1 hover:bg-zinc-100 dark:hover:bg-zinc-700' : ''}`}
+              onDoubleClick={isRenamable ? (e) => { e.stopPropagation(); setRenameValue(section.title); setIsRenaming(true); } : undefined}
             >
               {section.title}
             </h3>

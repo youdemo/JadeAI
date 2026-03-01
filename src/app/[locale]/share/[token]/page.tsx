@@ -168,8 +168,8 @@ export default function SharePage({ params }: { params: Promise<{ token: string 
         </div>
 
         {/* Resume preview */}
-        <div className="mx-auto max-w-4xl py-8 px-4">
-          <div className="rounded-xl border border-zinc-200 bg-white shadow-lg overflow-hidden dark:border-zinc-700 dark:bg-zinc-900">
+        <div className="mx-auto max-w-4xl px-4">
+          <div className="border border-zinc-200 bg-white shadow-lg overflow-hidden dark:border-zinc-700 dark:bg-zinc-900">
             <ResumePreview resume={resume} />
           </div>
         </div>

@@ -96,7 +96,7 @@ export function buildTimelineHtml(resume: ResumeWithSections): string {
   const BG = '#475569';
   const AC = '#3b82f6';
 
-  return `<div class="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style="font-family:Inter,sans-serif">
+  return `<div class="mx-auto max-w-[210mm] bg-white shadow-lg" style="font-family:Inter,sans-serif">
     <div class="mb-6 text-center">
       ${pi.avatar ? `<img src="${esc(pi.avatar)}" alt="" class="mx-auto mb-3 h-18 w-18 rounded-full border-2 object-cover" style="border-color:${AC}"/>` : ''}
       <h1 class="text-2xl font-bold" style="color:${BG}">${esc(pi.fullName || 'Your Name')}</h1>

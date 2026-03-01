@@ -94,7 +94,7 @@ export function buildExportThemeCSS(theme: typeof DEFAULT_THEME, template: strin
     ${sel} > div {
       font-family: ${theme.fontFamily}, sans-serif !important;
       line-height: ${theme.lineSpacing} !important;
-      ${needsPadding ? `padding: ${m.top}px ${m.right}px ${m.bottom}px ${m.left}px !important;` : ''}
+      ${needsPadding ? `padding-top: ${m.top}px !important; padding-right: ${m.right}px !important; padding-bottom: ${m.bottom}px !important; padding-left: ${m.left}px !important;` : ''}
       --base-body-size: ${fs.body};
       --base-h1-size: ${fs.h1};
       --base-h2-size: ${fs.h2};

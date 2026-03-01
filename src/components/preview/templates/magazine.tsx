@@ -26,7 +26,7 @@ export function MagazineTemplate({ resume }: { resume: Resume }) {
   const contacts = [pi.email, pi.phone, pi.location, pi.website, pi.linkedin, pi.github].filter(Boolean);
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style={{ fontFamily: 'Georgia, serif' }}>
+    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Georgia, serif' }}>
       {/* Header */}
       <div className="mb-6 border-b-2 pb-4" style={{ borderColor: ACCENT }}>
         <div className="flex items-end gap-4">

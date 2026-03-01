@@ -62,7 +62,7 @@ export function GenerateResumeDialog({ open, onOpenChange, onCreated }: Generate
         },
         body: JSON.stringify({
           jobTitle: jobTitle.trim(),
-          yearsOfExperience: yearsOfExperience || undefined,
+          yearsOfExperience: yearsOfExperience === '' ? undefined : yearsOfExperience,
           skills: skills.trim()
             ? skills.split(/[\s,，、]+/).map(s => s.trim()).filter(Boolean)
             : undefined,

@@ -107,7 +107,7 @@ export function buildSwissHtml(resume: ResumeWithSections): string {
   const sections = visibleSections(resume);
   const contacts = [pi.email, pi.phone, pi.location, pi.website].filter(Boolean);
 
-  return `<div class="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif">
+  return `<div class="mx-auto max-w-[210mm] bg-white shadow-lg" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif">
     <div class="mb-8">
       <div class="flex items-start gap-6">
         ${pi.avatar ? `<img src="${esc(pi.avatar)}" alt="" class="h-16 w-16 shrink-0 object-cover grayscale"/>` : ''}

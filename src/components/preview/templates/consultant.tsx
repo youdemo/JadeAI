@@ -11,7 +11,7 @@ export function ConsultantTemplate({ resume }: { resume: Resume }) {
   const pi = (personalInfo?.content || {}) as PersonalInfoContent;
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
       {/* Top accent bar */}
       <div className="mb-6 h-1 w-full rounded" style={{ backgroundColor: BLUE_600 }} />
 

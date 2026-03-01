@@ -78,7 +78,7 @@ export function buildFormalHtml(resume: ResumeWithSections): string {
   const contacts = [pi.email, pi.phone, pi.location, pi.website].filter(Boolean);
   const DG = '#004d40';
 
-  return `<div class="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style="font-family:Georgia,'Times New Roman',serif">
+  return `<div class="mx-auto max-w-[210mm] bg-white shadow-lg" style="font-family:Georgia,'Times New Roman',serif">
     <div class="mb-6 border-b-2 pb-4" style="border-color:${DG}">
       <div class="flex items-center justify-center gap-4">
         ${pi.avatar ? `<img src="${esc(pi.avatar)}" alt="" class="h-16 w-16 shrink-0 rounded-full border-2 object-cover" style="border-color:${DG}"/>` : ''}

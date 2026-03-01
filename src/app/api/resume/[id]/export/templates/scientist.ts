@@ -88,7 +88,7 @@ export function buildScientistHtml(resume: ResumeWithSections): string {
   const sections = visibleSections(resume);
   const contacts = [pi.email, pi.phone, pi.location, pi.website].filter(Boolean);
 
-  return `<div class="mx-auto max-w-[210mm] bg-white p-10 shadow-lg" style="font-family:Georgia,serif">
+  return `<div class="mx-auto max-w-[210mm] bg-white shadow-lg" style="font-family:Georgia,serif">
     <div class="mb-6 text-center">
       ${pi.avatar ? `<img src="${esc(pi.avatar)}" alt="" class="mx-auto mb-3 h-14 w-14 rounded-full object-cover" style="border:2px solid ${ACCENT}"/>` : ''}
       <h1 class="text-2xl font-bold" style="color:${PRIMARY}">${esc(pi.fullName || 'Your Name')}</h1>

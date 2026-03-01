@@ -281,18 +281,20 @@ export function JdAnalysisDialog({ open, onOpenChange, resumeId }: JdAnalysisDia
   const [historyDetailLoading, setHistoryDetailLoading] = useState(false);
   const [deleteToConfirm, setDeleteToConfirm] = useState<string | null>(null);
 
-  const fingerprint = typeof window !== 'undefined' ? localStorage.getItem('jade_fingerprint') : null;
-  const authHeaders = {
-    'Content-Type': 'application/json',
-    ...(fingerprint ? { 'x-fingerprint': fingerprint } : {}),
-    ...getAIHeaders(),
+  const getAuthHeaders = () => {
+    const fingerprint = typeof window !== 'undefined' ? localStorage.getItem('jade_fingerprint') : null;
+    return {
+      'Content-Type': 'application/json',
+      ...(fingerprint ? { 'x-fingerprint': fingerprint } : {}),
+      ...getAIHeaders(),
+    };
   };
 
   const fetchHistory = useCallback(async () => {
     setHistoryLoading(true);
     try {
       const res = await fetch(`/api/ai/jd-analysis/history?resumeId=${resumeId}`, {
-        headers: authHeaders,
+        headers: getAuthHeaders(),
       });
       if (res.ok) {
         setHistory(await res.json());
@@ -317,7 +319,7 @@ export function JdAnalysisDialog({ open, onOpenChange, resumeId }: JdAnalysisDia
     try {
       const res = await fetch('/api/ai/jd-analysis', {
         method: 'POST',
-        headers: authHeaders,
+        headers: getAuthHeaders(),
         body: JSON.stringify({ resumeId, jobDescription }),
       });
 
@@ -379,7 +381,7 @@ export function JdAnalysisDialog({ open, onOpenChange, resumeId }: JdAnalysisDia
     try {
       await fetch(`/api/ai/jd-analysis/history?id=${id}`, {
         method: 'DELETE',
-        headers: authHeaders,
+        headers: getAuthHeaders(),
       });
       setHistory((prev) => prev.filter((h) => h.id !== id));
       if (historyDetail) {
@@ -530,7 +532,7 @@ export function JdAnalysisDialog({ open, onOpenChange, resumeId }: JdAnalysisDia
                             try {
                               // Fetch full detail via individual record endpoint
                               const res = await fetch(`/api/ai/jd-analysis/history?resumeId=${resumeId}&id=${item.id}`, {
-                                headers: authHeaders,
+                                headers: getAuthHeaders(),
                               });
                               if (res.ok) {
                                 const data = await res.json();

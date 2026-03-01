@@ -229,10 +229,10 @@
     "themeSystem": "跟随系统",
     "ai": {
       "title": "AI 配置",
-      "provider": "AI 服务商",
+      "provider": "模型协议",
       "apiKey": "API Key",
       "apiKeyPlaceholder": "输入你的 API Key...",
-      "apiKeyHint": "API Key 保存在本地，每次请求直接发送给 AI 服务商。",
+      "apiKeyHint": "API Key 保存在本地，每次请求直接发送给模型服务商。",
       "baseURL": "API 地址",
       "model": "默认模型",
       "modelPlaceholder": "输入模型名称...",

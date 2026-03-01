@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type AIProvider = 'openai' | 'anthropic' | 'custom';
+export type AIProvider = 'openai' | 'anthropic' | 'gemini';
 
 interface SettingsStore {
   // AI settings
@@ -8,7 +8,6 @@ interface SettingsStore {
   aiApiKey: string; // stored locally only, never sent to server
   aiBaseURL: string;
   aiModel: string;
-
   // Editor settings
   autoSave: boolean;
   autoSaveInterval: number; // in milliseconds
@@ -28,6 +27,32 @@ interface SettingsStore {
 }
 
 const API_KEY_STORAGE_KEY = 'jade_api_key';
+const PROVIDER_CONFIGS_KEY = 'jade_provider_configs';
+
+interface ProviderConfig {
+  baseURL: string;
+  model: string;
+  apiKey: string;
+}
+
+const PROVIDER_DEFAULTS: Record<AIProvider, ProviderConfig> = {
+  openai: { baseURL: 'https://api.openai.com/v1', model: 'gpt-4o', apiKey: '' },
+  anthropic: { baseURL: 'https://api.anthropic.com', model: 'claude-sonnet-4-20250514', apiKey: '' },
+  gemini: { baseURL: 'https://generativelanguage.googleapis.com/v1beta', model: 'gemini-2.0-flash', apiKey: '' },
+};
+
+function loadProviderConfigs(): Partial<Record<AIProvider, ProviderConfig>> {
+  if (typeof window === 'undefined') return {};
+  try {
+    const raw = localStorage.getItem(PROVIDER_CONFIGS_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch { return {}; }
+}
+
+function saveProviderConfigs(configs: Partial<Record<AIProvider, ProviderConfig>>) {
+  if (typeof window === 'undefined') return;
+  try { localStorage.setItem(PROVIDER_CONFIGS_KEY, JSON.stringify(configs)); } catch { /* ignore */ }
+}
 
 function getFingerprint(): string | null {
   if (typeof window === 'undefined') return null;
@@ -66,6 +91,16 @@ function syncToServer(state: SettingsStore) {
   }, 500);
 }
 
+function syncProviderConfig(state: SettingsStore) {
+  const configs = loadProviderConfigs();
+  configs[state.aiProvider] = {
+    baseURL: state.aiBaseURL,
+    model: state.aiModel,
+    apiKey: state.aiApiKey,
+  };
+  saveProviderConfigs(configs);
+}
+
 function saveApiKeyLocally(key: string) {
   if (typeof window === 'undefined') return;
   try {
@@ -87,8 +122,9 @@ function loadApiKeyLocally(): string {
 }
 
 export function getAIHeaders(): Record<string, string> {
-  const { aiApiKey, aiBaseURL, aiModel } = useSettingsStore.getState();
+  const { aiProvider, aiApiKey, aiBaseURL, aiModel } = useSettingsStore.getState();
   const headers: Record<string, string> = {};
+  if (aiProvider) headers['x-provider'] = aiProvider;
   if (aiApiKey) headers['x-api-key'] = aiApiKey;
   if (aiBaseURL) headers['x-base-url'] = aiBaseURL;
   if (aiModel) headers['x-model'] = aiModel;
@@ -106,32 +142,44 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
   _syncing: false,
 
   setAIProvider: (provider) => {
-    const defaults: Record<AIProvider, { baseURL: string; model: string }> = {
-      openai: { baseURL: 'https://api.openai.com/v1', model: 'gpt-4o' },
-      anthropic: { baseURL: 'https://api.anthropic.com', model: 'claude-sonnet-4-20250514' },
-      custom: { baseURL: get().aiBaseURL, model: get().aiModel },
-    };
+    const { aiProvider: prev, aiBaseURL, aiModel, aiApiKey } = get();
+
+    // Save current provider's config before switching
+    const configs = loadProviderConfigs();
+    configs[prev] = { baseURL: aiBaseURL, model: aiModel, apiKey: aiApiKey };
+    saveProviderConfigs(configs);
+
+    // Restore target provider's cached config, or use defaults
+    const cached = configs[provider];
+    const defaults = PROVIDER_DEFAULTS[provider];
+    const restored = cached || defaults;
+
     set({
       aiProvider: provider,
-      aiBaseURL: defaults[provider].baseURL,
-      aiModel: defaults[provider].model,
+      aiBaseURL: restored.baseURL,
+      aiModel: restored.model,
+      aiApiKey: restored.apiKey,
     });
+    saveApiKeyLocally(restored.apiKey);
     syncToServer(get());
   },
 
   setAIApiKey: (key) => {
     set({ aiApiKey: key });
     saveApiKeyLocally(key);
+    syncProviderConfig(get());
   },
 
   setAIBaseURL: (url) => {
     set({ aiBaseURL: url });
     syncToServer(get());
+    syncProviderConfig(get());
   },
 
   setAIModel: (model) => {
     set({ aiModel: model });
     syncToServer(get());
+    syncProviderConfig(get());
   },
 
   setAutoSave: (enabled) => {
@@ -156,14 +204,18 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
       const res = await fetch('/api/user/settings', { headers: getHeaders() });
       if (res.ok) {
         const data = await res.json();
+        // Backward compat: map legacy 'custom' provider to 'openai'
+        const provider = (data.aiProvider === 'custom' || data.aiProvider === 'azure') ? 'openai' : data.aiProvider;
         set({
-          ...(data.aiProvider && { aiProvider: data.aiProvider }),
+          ...(provider && { aiProvider: provider }),
           ...(data.aiBaseURL && { aiBaseURL: data.aiBaseURL }),
           ...(data.aiModel && { aiModel: data.aiModel }),
           ...(typeof data.autoSave === 'boolean' && { autoSave: data.autoSave }),
           ...(typeof data.autoSaveInterval === 'number' && { autoSaveInterval: data.autoSaveInterval }),
           _hydrated: true,
         });
+        // Seed provider config cache with hydrated values
+        syncProviderConfig(get());
         return;
       }
     } catch { /* fall through */ }

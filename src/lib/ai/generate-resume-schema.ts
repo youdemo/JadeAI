@@ -3,7 +3,7 @@ import { z } from 'zod/v4';
 // Input schema for generate-resume API
 export const generateResumeInputSchema = z.object({
   jobTitle: z.string().min(1).describe('The target job title, e.g. "Frontend Engineer"'),
-  yearsOfExperience: z.number().min(0).max(50).describe('Years of professional experience'),
+  yearsOfExperience: z.number().min(0).max(50).optional().default(0).describe('Years of professional experience'),
   skills: z.array(z.string()).optional().describe('Optional list of skills to include'),
   industry: z.string().optional().describe('Optional industry context, e.g. "fintech", "healthcare"'),
   experience: z.string().optional().describe('Optional free-text work experience description for AI to parse and incorporate'),

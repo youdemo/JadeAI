@@ -77,7 +77,7 @@ export function buildElegantHtml(resume: ResumeWithSections): string {
   const contacts = [pi.email, pi.phone, pi.location, pi.website].filter(Boolean);
   const GOLD = '#d4af37';
 
-  return `<div class="mx-auto max-w-[210mm] bg-white p-10 shadow-lg" style="font-family:Georgia,'Times New Roman',serif">
+  return `<div class="mx-auto max-w-[210mm] bg-white shadow-lg" style="font-family:Georgia,'Times New Roman',serif">
     <div class="mb-8 text-center">
       ${pi.avatar ? `<img src="${esc(pi.avatar)}" alt="" class="mx-auto mb-3 h-20 w-20 rounded-full border-2 object-cover" style="border-color:${GOLD}"/>` : ''}
       <h1 class="text-3xl font-bold tracking-wide" style="color:#2c2c2c">${esc(pi.fullName || 'Your Name')}</h1>

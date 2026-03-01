@@ -22,7 +22,7 @@ export function AcademicTemplate({ resume }: { resume: Resume }) {
   const contacts = [pi.email, pi.phone, pi.location, pi.website, pi.linkedin, pi.github].filter(Boolean);
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white px-10 py-8 shadow-lg" style={{ fontFamily: '"Computer Modern", "CMU Serif", Georgia, "Times New Roman", serif' }}>
+    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: '"Computer Modern", "CMU Serif", Georgia, "Times New Roman", serif' }}>
       {/* Header — LaTeX-inspired centered layout */}
       <div className="mb-6 text-center">
         <h1 className="text-2xl font-bold text-zinc-900" style={{ letterSpacing: '0.02em' }}>

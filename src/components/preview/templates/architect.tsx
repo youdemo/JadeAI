@@ -15,7 +15,7 @@ export function ArchitectTemplate({ resume }: { resume: Resume }) {
 
   return (
     <div
-      className="mx-auto max-w-[210mm] bg-white p-10 shadow-lg"
+      className="mx-auto max-w-[210mm] bg-white shadow-lg"
       style={{
         fontFamily: 'Inter, sans-serif',
         backgroundImage: `linear-gradient(${GRID} 1px, transparent 1px), linear-gradient(90deg, ${GRID} 1px, transparent 1px)`,

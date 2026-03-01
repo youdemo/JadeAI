@@ -92,7 +92,7 @@ export function buildZigzagHtml(resume: ResumeWithSections): string {
 
   const zigzagSvg = `<svg width="40" height="12" viewBox="0 0 40 12" fill="none"><path d="M0 6 L10 1 L20 6 L30 1 L40 6" stroke="${ACCENT}" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.4"/></svg>`;
 
-  return `<div class="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style="font-family:Inter,sans-serif">
+  return `<div class="mx-auto max-w-[210mm] bg-white shadow-lg" style="font-family:Inter,sans-serif">
     <div class="mb-6 text-center">
       ${pi.avatar ? `<img src="${esc(pi.avatar)}" alt="" class="mx-auto mb-3 h-20 w-20 rounded-full object-cover" style="border:3px solid ${ACCENT}"/>` : ''}
       <h1 class="text-2xl font-bold" style="color:${PRIMARY}">${esc(pi.fullName || 'Your Name')}</h1>

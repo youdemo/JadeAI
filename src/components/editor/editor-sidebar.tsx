@@ -89,7 +89,7 @@ function SortableSidebarItem({
     opacity: isDragging ? 0.5 : undefined,
   };
 
-  const isCustom = section.type === 'custom';
+  const isRenamable = section.type !== 'personal_info';
 
   return (
     <div
@@ -129,7 +129,7 @@ function SortableSidebarItem({
           <span className="truncate">{section.title}</span>
         )}
       </button>
-      {isCustom && !isRenaming && (
+      {isRenamable && !isRenaming && (
         <button
           type="button"
           className="hidden shrink-0 cursor-pointer rounded p-0.5 text-zinc-300 hover:text-zinc-600 group-hover/item:block dark:hover:text-zinc-200"
@@ -250,7 +250,7 @@ export function EditorSidebar({ sections, onAddSection, onReorderSections }: Edi
                     section={section}
                     isSelected={selectedSectionId === section.id}
                     onSelect={() => handleSelect(section.id)}
-                    onRename={section.type === 'custom' ? (title) => updateSectionTitle(section.id, title) : undefined}
+                    onRename={section.type !== 'personal_info' ? (title) => updateSectionTitle(section.id, title) : undefined}
                     icon={Icon}
                   />
                 );

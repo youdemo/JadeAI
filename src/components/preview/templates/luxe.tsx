@@ -24,7 +24,7 @@ export function LuxeTemplate({ resume }: { resume: Resume }) {
   const pi = (personalInfo?.content || {}) as PersonalInfoContent;
 
   return (
-    <div className="mx-auto max-w-[210mm] p-8 shadow-lg" style={{ fontFamily: 'Georgia, serif', backgroundColor: BG }}>
+    <div className="mx-auto max-w-[210mm] shadow-lg" style={{ fontFamily: 'Georgia, serif', backgroundColor: BG }}>
       {/* Header */}
       <div className="mb-8 border-b-2 pb-6" style={{ borderColor: GOLD }}>
         <div className="text-center">

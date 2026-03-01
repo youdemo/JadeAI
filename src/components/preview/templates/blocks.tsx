@@ -26,7 +26,7 @@ export function BlocksTemplate({ resume }: { resume: Resume }) {
   const contacts = [pi.email, pi.phone, pi.location, pi.website].filter(Boolean);
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
       {/* Header - clean Notion-like */}
       <div className="mb-6">
         <div className="flex items-center gap-4">

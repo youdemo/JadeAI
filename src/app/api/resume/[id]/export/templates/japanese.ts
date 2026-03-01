@@ -107,7 +107,7 @@ export function buildJapaneseHtml(resume: ResumeWithSections): string {
   const sections = visibleSections(resume);
   const contacts = [pi.email, pi.phone, pi.location, pi.website].filter(Boolean);
 
-  return `<div class="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style="font-family:Inter,sans-serif">
+  return `<div class="mx-auto max-w-[210mm] bg-white shadow-lg" style="font-family:Inter,sans-serif">
     <div class="mb-12 pt-4 text-center">
       ${pi.avatar ? `<img src="${esc(pi.avatar)}" alt="" class="mx-auto mb-4 h-16 w-16 rounded-full object-cover" style="border:1px solid ${ACCENT}"/>` : ''}
       <h1 class="text-2xl font-light tracking-wide" style="color:${PRIMARY}">${esc(pi.fullName || 'Your Name')}</h1>

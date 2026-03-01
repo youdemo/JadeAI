@@ -92,7 +92,7 @@ export function buildEuroHtml(resume: ResumeWithSections): string {
   const sections = visibleSections(resume);
   const BL = '#1e40af';
 
-  return `<div class="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style="font-family:Inter,sans-serif">
+  return `<div class="mx-auto max-w-[210mm] bg-white shadow-lg" style="font-family:Inter,sans-serif">
     <div class="mb-6 flex items-start gap-6">
       <div class="flex-1">
         <h1 class="text-3xl font-bold" style="color:${BL}">${esc(pi.fullName || 'Your Name')}</h1>

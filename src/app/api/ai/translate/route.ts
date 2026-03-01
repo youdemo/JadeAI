@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 import { generateText, type LanguageModel } from 'ai';
-import { getModel, extractAIConfig, AIConfigError } from '@/lib/ai/provider';
+import { getModel, extractAIConfig, getJsonProviderOptions, AIConfigError, type AIConfig } from '@/lib/ai/provider';
 import { resolveUser, getUserIdFromRequest } from '@/lib/auth/helpers';
 import { resumeRepository } from '@/lib/db/repositories/resume.repository';
 import { translateInputSchema } from '@/lib/ai/translate-schema';
@@ -53,16 +53,15 @@ Rules:
 async function translateSection(
   section: { sectionId: string; type: string; title: string; content: unknown },
   targetLanguage: string,
-  model: LanguageModel
+  model: LanguageModel,
+  aiConfig: AIConfig
 ) {
   const result = await generateText({
     model,
     maxOutputTokens: 4096,
     system: getSectionTranslatePrompt(targetLanguage),
     prompt: `Translate this resume section. Return JSON with keys: sectionId, title, content.\n\n${JSON.stringify(section)}`,
-    providerOptions: {
-      openai: { response_format: { type: 'json_object' } },
-    },
+    providerOptions: getJsonProviderOptions(aiConfig),
   });
 
   return extractJson(result.text, singleSectionSchema);
@@ -184,7 +183,7 @@ export async function POST(request: NextRequest) {
             sectionsData,
             MAX_CONCURRENCY,
             async (section) => {
-              const translated = await translateSection(section, targetLanguage, model);
+              const translated = await translateSection(section, targetLanguage, model, aiConfig);
 
               // Merge back stripped fields (e.g. avatar)
               const saved = strippedFields.get(translated.sectionId);

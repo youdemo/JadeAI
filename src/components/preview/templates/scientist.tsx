@@ -18,7 +18,7 @@ export function ScientistTemplate({ resume }: { resume: Resume }) {
   );
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white p-10 shadow-lg" style={{ fontFamily: 'Georgia, serif' }}>
+    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Georgia, serif' }}>
       {/* Header - scientific paper style */}
       <div className="mb-6 text-center">
         {pi.avatar && (

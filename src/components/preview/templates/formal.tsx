@@ -10,7 +10,7 @@ export function FormalTemplate({ resume }: { resume: Resume }) {
   const pi = (personalInfo?.content || {}) as PersonalInfoContent;
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
+    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
       {/* Header */}
       <div className="mb-6 border-b-2 pb-4" style={{ borderColor: DARK_GREEN }}>
         <div className="flex items-center justify-center gap-4">

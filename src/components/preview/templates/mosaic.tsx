@@ -38,7 +38,7 @@ export function MosaicTemplate({ resume }: { resume: Resume }) {
   );
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
       {/* Header */}
       <div className="mb-6 rounded-lg p-5" style={{ background: `linear-gradient(135deg, ${TILE_COLORS[0]}15, ${TILE_COLORS[3]}15)` }}>
         <div className="flex items-center gap-4">

@@ -25,7 +25,7 @@ export function RoseTemplate({ resume }: { resume: Resume }) {
   const pi = (personalInfo?.content || {}) as PersonalInfoContent;
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
       {/* Header */}
       <div className="mb-8 rounded-2xl px-8 py-6 text-center" style={{ backgroundColor: ROSE_50 }}>
         {pi.avatar && (

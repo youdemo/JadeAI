@@ -93,7 +93,7 @@ export function buildMosaicHtml(resume: ResumeWithSections): string {
   const sections = visibleSections(resume);
   const contacts = [pi.email, pi.phone, pi.location, pi.website, pi.linkedin, pi.github].filter(Boolean);
 
-  return `<div class="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style="font-family:Inter,sans-serif">
+  return `<div class="mx-auto max-w-[210mm] bg-white shadow-lg" style="font-family:Inter,sans-serif">
     <div class="mb-6 rounded-lg p-5" style="background:linear-gradient(135deg,${TILE_COLORS[0]}15,${TILE_COLORS[3]}15)">
       <div class="flex items-center gap-4">
         ${pi.avatar ? `<img src="${esc(pi.avatar)}" alt="" class="h-18 w-18 shrink-0 rounded-lg object-cover" style="border:3px solid ${TILE_COLORS[0]}"/>` : ''}

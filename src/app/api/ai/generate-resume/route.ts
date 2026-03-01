@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateText } from 'ai';
-import { getModel, extractAIConfig, AIConfigError } from '@/lib/ai/provider';
+import { getModel, extractAIConfig, getJsonProviderOptions, AIConfigError } from '@/lib/ai/provider';
 import { resolveUser, getUserIdFromRequest } from '@/lib/auth/helpers';
 import { resumeRepository } from '@/lib/db/repositories/resume.repository';
 import { generateResumeInputSchema, type GenerateResumeOutput } from '@/lib/ai/generate-resume-schema';
@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
       model,
       maxOutputTokens: 8192,
       system: getSystemPrompt(lang),
-      prompt: `Generate a complete resume for a ${jobTitle} with ${yearsOfExperience} years of experience.${skillsContext}${industryContext}${experienceContext}
+      prompt: `Generate a complete resume for a ${jobTitle} ${yearsOfExperience === 0 ? 'at entry level (fresh graduate / no prior experience)' : `with ${yearsOfExperience} years of experience`}.${skillsContext}${industryContext}${experienceContext}
 
 Return a JSON object with these exact top-level keys: personal_info, summary, work_experience, education, skills, projects.
 
@@ -106,11 +106,7 @@ The structure must be:
 - projects: { items: [{ name, url?, startDate?, endDate?, description, technologies: string[], highlights: string[] }] }
 
 Respond with JSON only.`,
-      providerOptions: {
-        openai: {
-          response_format: { type: 'json_object' },
-        },
-      },
+      providerOptions: getJsonProviderOptions(aiConfig),
     });
 
     const generatedData: GenerateResumeOutput = extractJson(result.text, generateResumeOutputSchema) as GenerateResumeOutput;

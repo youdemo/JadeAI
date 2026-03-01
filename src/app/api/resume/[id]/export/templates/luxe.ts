@@ -93,7 +93,7 @@ export function buildLuxeHtml(resume: ResumeWithSections): string {
   const sections = visibleSections(resume);
   const contacts = [pi.email, pi.phone, pi.location, pi.website].filter(Boolean);
 
-  return `<div class="mx-auto max-w-[210mm] p-8 shadow-lg" style="font-family:Georgia,serif;background-color:${BG}">
+  return `<div class="mx-auto max-w-[210mm] shadow-lg" style="font-family:Georgia,serif;background-color:${BG}">
     <div class="mb-8 border-b-2 pb-6" style="border-color:${GOLD}">
       <div class="text-center">
         ${pi.avatar ? `<img src="${esc(pi.avatar)}" alt="" class="mx-auto mb-3 h-20 w-20 rounded-full border-2 object-cover" style="border-color:${GOLD}"/>` : ''}

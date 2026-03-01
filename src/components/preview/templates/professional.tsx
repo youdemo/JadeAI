@@ -22,7 +22,7 @@ export function ProfessionalTemplate({ resume }: { resume: Resume }) {
   const contacts = [pi.email, pi.phone, pi.location, pi.website, pi.linkedin, pi.github].filter(Boolean);
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
+    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
       {/* Header */}
       <div className="mb-6 text-center">
         <div className="flex items-center justify-center gap-4">

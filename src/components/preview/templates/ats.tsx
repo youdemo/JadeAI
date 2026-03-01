@@ -22,7 +22,7 @@ export function AtsTemplate({ resume }: { resume: Resume }) {
   const contacts = [pi.email, pi.phone, pi.location, pi.website, pi.linkedin, pi.github].filter(Boolean);
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
+    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
       {/* Header — plain, no graphics */}
       <div className="mb-4 text-center">
         <h1 className="text-2xl font-bold text-black">{pi.fullName || 'Your Name'}</h1>

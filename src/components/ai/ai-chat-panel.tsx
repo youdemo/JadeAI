@@ -59,6 +59,9 @@ export function AIChatContent({ resumeId, hideTitle }: AIChatContentProps) {
   const { historicalMessages, hasMore, isLoadingMore, loadInitial, loadMore, reset: resetPagination } = useMessagePagination();
 
   const settingsModel = useSettingsStore((s) => s.aiModel);
+  const settingsProvider = useSettingsStore((s) => s.aiProvider);
+  const settingsBaseURL = useSettingsStore((s) => s.aiBaseURL);
+  const settingsApiKey = useSettingsStore((s) => s.aiApiKey);
   const hydrated = useSettingsStore((s) => s._hydrated);
 
   // Sync selectedModel when settings hydrate or user changes default model
@@ -68,8 +71,7 @@ export function AIChatContent({ resumeId, hideTitle }: AIChatContentProps) {
     }
   }, [hydrated, settingsModel]);
 
-  // Fetch models from API, always include user's configured model
-  // Re-fetch after hydration since API key/base URL may have changed
+  // Fetch models from API — re-fetch when provider/key/baseURL/model changes
   useEffect(() => {
     if (!hydrated) return;
     fetch('/api/ai/models', { headers: getAIHeaders() })
@@ -88,8 +90,7 @@ export function AIChatContent({ resumeId, hideTitle }: AIChatContentProps) {
           setModels([settingsModel]);
         }
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hydrated]);
+  }, [hydrated, settingsProvider, settingsBaseURL, settingsApiKey, settingsModel]);
 
   // Fetch sessions on mount
   useEffect(() => {

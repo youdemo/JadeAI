@@ -76,7 +76,7 @@ export function buildAcademicHtml(resume: ResumeWithSections): string {
   const sections = visibleSections(resume);
   const contacts = [pi.email, pi.phone, pi.location, pi.website, pi.linkedin, pi.github].filter(Boolean);
 
-  return `<div class="mx-auto max-w-[210mm] bg-white px-10 py-8 shadow-lg" style="font-family:'Computer Modern','CMU Serif',Georgia,'Times New Roman',serif">
+  return `<div class="mx-auto max-w-[210mm] bg-white shadow-lg" style="font-family:'Computer Modern','CMU Serif',Georgia,'Times New Roman',serif">
     <div class="mb-6 text-center">
       <h1 class="text-2xl font-bold text-zinc-900" style="letter-spacing:0.02em">${esc(pi.fullName || 'Your Name')}</h1>
       ${pi.jobTitle ? `<p class="mt-0.5 text-base text-zinc-500 italic">${esc(pi.jobTitle)}</p>` : ''}

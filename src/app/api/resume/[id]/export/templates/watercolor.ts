@@ -101,7 +101,7 @@ export function buildWatercolorHtml(resume: ResumeWithSections): string {
   const sections = visibleSections(resume);
   const contacts = [pi.email, pi.phone, pi.location, pi.website, pi.linkedin, pi.github].filter(Boolean);
 
-  return `<div class="mx-auto max-w-[210mm] bg-white p-8 shadow-lg" style="font-family:Inter,sans-serif">
+  return `<div class="mx-auto max-w-[210mm] bg-white shadow-lg" style="font-family:Inter,sans-serif">
     <div class="mb-6 rounded-2xl px-6 py-5" style="background-color:${WASH}">
       <div class="flex items-center gap-5">
         ${pi.avatar ? `<div class="shrink-0 rounded-full p-1" style="background:${GRADIENT}"><img src="${esc(pi.avatar)}" alt="" class="h-20 w-20 rounded-full border-2 border-white object-cover"/></div>` : ''}
