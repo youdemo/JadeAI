@@ -26,22 +26,24 @@ export function AtsTemplate({ resume }: { resume: Resume }) {
   return (
     <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
       {/* Header — plain, minimal graphics */}
-      <div className="mb-4 text-center">
+      <div className={`mb-4 ${pi.avatar ? 'flex items-center gap-4' : 'text-center'}`}>
         {pi.avatar && (
           <AvatarImage
             src={pi.avatar}
             size={64}
             avatarStyle={resume.themeConfig?.avatarStyle}
-            wrapperClassName="mx-auto mb-2 overflow-hidden"
+            wrapperClassName="shrink-0 overflow-hidden"
           />
         )}
-        <h1 className="text-2xl font-bold text-black">{pi.fullName || 'Your Name'}</h1>
-        {pi.jobTitle && <p className="mt-0.5 text-base text-zinc-800">{pi.jobTitle}</p>}
-        {contacts.length > 0 && (
-          <p className="mt-1 text-sm text-zinc-700">
-            {contacts.join(' | ')}
-          </p>
-        )}
+        <div className={pi.avatar ? '' : ''}>
+          <h1 className="text-2xl font-bold text-black">{pi.fullName || 'Your Name'}</h1>
+          {pi.jobTitle && <p className="mt-0.5 text-base text-zinc-800">{pi.jobTitle}</p>}
+          {contacts.length > 0 && (
+            <p className="mt-1 text-sm text-zinc-700">
+              {contacts.join(' | ')}
+            </p>
+          )}
+        </div>
       </div>
 
       <hr className="mb-4 border-black" />

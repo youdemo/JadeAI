@@ -80,10 +80,15 @@ export function buildAcademicHtml(resume: ResumeWithSections): string {
   const contacts = [pi.email, pi.phone, pi.location, pi.website, pi.linkedin, pi.github].filter(Boolean);
 
   return `<div class="mx-auto max-w-[210mm] bg-white shadow-lg" style="font-family:'Computer Modern','CMU Serif',Georgia,'Times New Roman',serif">
-    <div class="mb-6 text-center">
-      <h1 class="text-2xl font-bold text-zinc-900" style="letter-spacing:0.02em">${esc(pi.fullName || 'Your Name')}</h1>
-      ${pi.jobTitle ? `<p class="mt-0.5 text-base text-zinc-500 italic">${esc(pi.jobTitle)}</p>` : ''}
-      ${contacts.length ? `<p class="mt-1.5 text-xs text-zinc-500">${contacts.map((c, i) => `${esc(c)}${i < contacts.length - 1 ? ' \u00B7 ' : ''}`).join('')}</p>` : ''}
+    <div class="mb-6">
+      <div class="${pi.avatar ? 'flex items-center gap-4' : 'text-center'}">
+        ${pi.avatar ? `<img src="${esc(pi.avatar)}" alt="" class="h-16 w-16 shrink-0 rounded-full object-cover"/>` : ''}
+        <div>
+          <h1 class="text-2xl font-bold text-zinc-900" style="letter-spacing:0.02em">${esc(pi.fullName || 'Your Name')}</h1>
+          ${pi.jobTitle ? `<p class="mt-0.5 text-base text-zinc-500 italic">${esc(pi.jobTitle)}</p>` : ''}
+          ${contacts.length ? `<p class="mt-1.5 text-xs text-zinc-500">${contacts.map((c, i) => `${esc(c)}${i < contacts.length - 1 ? ' \u00B7 ' : ''}`).join('')}</p>` : ''}
+        </div>
+      </div>
       <div class="mt-3 border-b-2 border-zinc-800"></div>
     </div>
     ${sections.map(s => `<div class="mb-4" data-section>

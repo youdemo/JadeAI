@@ -150,7 +150,7 @@ export function buildCoderHtml(resume: ResumeWithSections): string {
         <span class="ml-2 text-[10px]" style="color:#484f58">~/whoami</span>
       </div>
       <div class="mb-5">
-        ${pi.avatar ? `<div class="mb-3 h-20 w-20 overflow-hidden rounded-lg" style="border:2px solid ${BORDER}"><img src="${esc(pi.avatar)}" alt="" class="h-full w-full object-cover"/></div>` : ''}
+        ${pi.avatar ? `<div class="mx-auto mb-3 h-20 w-20 overflow-hidden rounded-lg"><img src="${esc(pi.avatar)}" alt="" class="h-full w-full object-cover"/></div>` : ''}
         <h1 class="text-lg font-bold" style="color:${GREEN}">${esc(pi.fullName || 'Your Name')}</h1>
         ${pi.jobTitle ? `<p class="mt-0.5 text-xs" style="color:${BLUE}">// ${esc(pi.jobTitle)}</p>` : ''}
       </div>

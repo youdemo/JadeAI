@@ -55,8 +55,7 @@ export function CoderTemplate({ resume }: { resume: Resume }) {
               src={pi.avatar}
               avatarStyle={resume.themeConfig?.avatarStyle}
               size={80}
-              wrapperClassName="mb-3 overflow-hidden"
-              wrapperStyle={{ border: `2px solid ${BORDER}` }}
+              wrapperClassName="mx-auto mb-3 w-fit overflow-hidden"
             />
           )}
           <h1 className="text-lg font-bold" style={{ color: GREEN }}>{pi.fullName || 'Your Name'}</h1>

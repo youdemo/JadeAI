@@ -79,10 +79,13 @@ export function buildAtsHtml(resume: ResumeWithSections): string {
   const contacts = [pi.email, pi.phone, pi.location, pi.website, pi.linkedin, pi.github].filter(Boolean);
 
   return `<div class="mx-auto max-w-[210mm] bg-white shadow-lg" style="font-family:Arial,Helvetica,sans-serif">
-    <div class="mb-4 text-center">
-      <h1 class="text-2xl font-bold text-black">${esc(pi.fullName || 'Your Name')}</h1>
-      ${pi.jobTitle ? `<p class="mt-0.5 text-base text-zinc-700">${esc(pi.jobTitle)}</p>` : ''}
-      ${contacts.length ? `<p class="mt-1 text-sm text-zinc-600">${contacts.map(c => esc(c)).join(' | ')}</p>` : ''}
+    <div class="mb-4 ${pi.avatar ? 'flex items-center gap-4' : 'text-center'}">
+      ${pi.avatar ? `<img src="${esc(pi.avatar)}" alt="" class="h-16 w-16 shrink-0 rounded-full object-cover"/>` : ''}
+      <div>
+        <h1 class="text-2xl font-bold text-black">${esc(pi.fullName || 'Your Name')}</h1>
+        ${pi.jobTitle ? `<p class="mt-0.5 text-base text-zinc-700">${esc(pi.jobTitle)}</p>` : ''}
+        ${contacts.length ? `<p class="mt-1 text-sm text-zinc-600">${contacts.map(c => esc(c)).join(' | ')}</p>` : ''}
+      </div>
     </div>
     <hr class="mb-4 border-black"/>
     ${sections.map(s => `<div class="mb-4" data-section>

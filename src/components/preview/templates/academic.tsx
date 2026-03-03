@@ -25,31 +25,35 @@ export function AcademicTemplate({ resume }: { resume: Resume }) {
 
   return (
     <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: '"Computer Modern", "CMU Serif", Georgia, "Times New Roman", serif' }}>
-      {/* Header — LaTeX-inspired centered layout */}
-      <div className="mb-6 text-center">
-        {pi.avatar && (
-          <AvatarImage
-            src={pi.avatar}
-            size={64}
-            avatarStyle={resume.themeConfig?.avatarStyle}
-            wrapperClassName="mx-auto mb-2 overflow-hidden"
-          />
-        )}
-        <h1 className="text-2xl font-bold text-zinc-900" style={{ letterSpacing: '0.02em' }}>
-          {pi.fullName || 'Your Name'}
-        </h1>
-        {pi.jobTitle && (
-          <p className="mt-0.5 text-base text-zinc-700 italic">{pi.jobTitle}</p>
-        )}
-        {contacts.length > 0 && (
-          <p className="mt-1.5 text-xs text-zinc-600">
-            {contacts.map((c, i) => (
-              <span key={i}>
-                {c}{i < contacts.length - 1 ? ' \u00B7 ' : ''}
-              </span>
-            ))}
-          </p>
-        )}
+      {/* Header — LaTeX-inspired layout */}
+      <div className="mb-6">
+        <div className={pi.avatar ? 'flex items-center gap-4' : 'text-center'}>
+          {pi.avatar && (
+            <AvatarImage
+              src={pi.avatar}
+              size={64}
+              avatarStyle={resume.themeConfig?.avatarStyle}
+              wrapperClassName="shrink-0 overflow-hidden"
+            />
+          )}
+          <div>
+            <h1 className="text-2xl font-bold text-zinc-900" style={{ letterSpacing: '0.02em' }}>
+              {pi.fullName || 'Your Name'}
+            </h1>
+            {pi.jobTitle && (
+              <p className="mt-0.5 text-base text-zinc-700 italic">{pi.jobTitle}</p>
+            )}
+            {contacts.length > 0 && (
+              <p className="mt-1.5 text-xs text-zinc-600">
+                {contacts.map((c, i) => (
+                  <span key={i}>
+                    {c}{i < contacts.length - 1 ? ' \u00B7 ' : ''}
+                  </span>
+                ))}
+              </p>
+            )}
+          </div>
+        </div>
         <div className="mt-3 border-b-2 border-zinc-800" />
       </div>
 

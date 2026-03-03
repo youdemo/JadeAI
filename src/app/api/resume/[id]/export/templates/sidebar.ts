@@ -120,7 +120,7 @@ export function buildSidebarHtml(resume: ResumeWithSections): string {
   return `<div class="mx-auto flex max-w-[210mm] overflow-hidden bg-white shadow-lg" style="font-family:Inter,sans-serif;min-height:297mm">
     <div class="w-[35%] shrink-0 p-6 text-white" style="background-color:${SIDEBAR_BG}">
       <div class="mb-6 text-center">
-        ${pi.avatar ? `<div class="mx-auto mb-3 h-24 w-24 overflow-hidden rounded-full border-[3px] border-white/30"><img src="${esc(pi.avatar)}" alt="" class="h-full w-full object-cover"/></div>` : ''}
+        ${pi.avatar ? `<div class="mx-auto mb-3 h-24 w-24 overflow-hidden rounded-full"><img src="${esc(pi.avatar)}" alt="" class="h-full w-full object-cover"/></div>` : ''}
         <h1 class="text-xl font-bold tracking-tight text-white">${esc(pi.fullName || 'Your Name')}</h1>
         ${pi.jobTitle ? `<p class="mt-1 text-sm font-light text-blue-200">${esc(pi.jobTitle)}</p>` : ''}
       </div>
